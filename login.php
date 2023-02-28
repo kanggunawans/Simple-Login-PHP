@@ -1,20 +1,21 @@
 <?php
-include_once "config.php";
+define("BASE_URL", "http://localhost/loginpages/");
+define("BASE_LOGIN", "http://localhost/loginpages/login.php");
+define("BASE_DASHBOARD", "http://localhost/loginpages/dashboard/");
 if (empty($_SESSION["memberid"])) {
 ?>
 	<!DOCTYPE html>
 	<html>
-
 	<head>
-		<?php GetWebHeader(); ?>
+		<?php //Header Web Disini; ?>
 		<!-- Font Awesome -->
-		<link rel="stylesheet" href="<?= BASE_URL; ?>g_assets/loginpage/css/all.min.css">
+		<link rel="stylesheet" href="<?= BASE_URL; ?>assets/loginpage/css/all.min.css">
 		<!-- Ionicons -->
 		<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 		<!-- icheck bootstrap -->
-		<link rel="stylesheet" href="<?= BASE_URL; ?>g_assets/loginpage/css/icheck-bootstrap.min.css">
+		<link rel="stylesheet" href="<?= BASE_URL; ?>assets/loginpage/css/icheck-bootstrap.min.css">
 		<!-- Theme style -->
-		<link rel="stylesheet" href="<?= BASE_URL; ?>g_assets/loginpage/css/adminlte.min.css">
+		<link rel="stylesheet" href="<?= BASE_URL; ?>assets/loginpage/css/adminlte.min.css">
 		<!-- Google Font: Source Sans Pro -->
 		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">		
 	</head>
@@ -22,7 +23,7 @@ if (empty($_SESSION["memberid"])) {
 	<body class="hold-transition login-page">
 		<div class="login-box">
 			<div class="login-logo">
-				<a href="<?php echo BASE_URL; ?>"><img src="<?= BASE_URL; ?>g_assets/images/logo.png" style="width:100%;"></a>
+				<a href="<?php echo BASE_URL; ?>"><img src="<?= BASE_URL; ?>assets/images/logo.png" style="width:100%;"></a>
 			</div>
 			<!-- /.login-logo -->
 			<div class="card">
@@ -79,17 +80,9 @@ if (empty($_SESSION["memberid"])) {
 										);
 									}
 									//status online
-									mysqli_query($con, "UPDATE g_member SET online='1' WHERE id_member='$valid_id'");
+									mysqli_query($con, "UPDATE member SET online='1' WHERE id_member='$valid_id'");
 									//arahkan ke halaman asal
-									if ($valid_level == "9") {
-										header("Location: " . BASE_DASHBOARD);
-									} else {
-										if ($browser_t == "smartphone") {
-											header("Location: " . BASE_DASHBOARD);
-										} else {
-											header("Location: " . BASE_DASHBOARD);
-										}
-									}									
+									header("Location: " . BASE_DASHBOARD);																	
 								} else {
 									//akses ditolak karena password tidak sama
 									$pesan = "username atau password salah!";
@@ -170,9 +163,9 @@ if (empty($_SESSION["memberid"])) {
 			</div>
 		</div>
 		<!-- /.login-box -->
-		<script src="<?= BASE_URL; ?>g_assets/loginpage/js/jquery.min.js"></script>
-		<script src="<?= BASE_URL; ?>g_assets/loginpage/js/bootstrap.bundle.min.js"></script>
-		<script src="<?= BASE_URL; ?>g_assets/loginpage/js/adminlte.min.js"></script>
+		<script src="<?= BASE_URL; ?>assets/loginpage/js/jquery.min.js"></script>
+		<script src="<?= BASE_URL; ?>assets/loginpage/js/bootstrap.bundle.min.js"></script>
+		<script src="<?= BASE_URL; ?>assets/loginpage/js/adminlte.min.js"></script>
 		<script src="<?= BASE_DASHBOARD; ?>assets/js/tongle.js"></script>
 	</body>
 
