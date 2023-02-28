@@ -1,7 +1,27 @@
 <?php
 define("BASE_URL", "http://localhost/loginpages/");
-define("BASE_LOGIN", "http://localhost/loginpages/login.php");
 define("BASE_DASHBOARD", "http://localhost/loginpages/dashboard/");
+/* KONFIGURASI DATABASE */
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', 'namadatabase');
+function getDB() {
+	$dbhost = DB_SERVER;
+	$dbuser = DB_USERNAME;
+	$dbpass = DB_PASSWORD;
+	$dbname = DB_DATABASE;
+	$dbConnection = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+	$dbConnection->exec("set names utf8");
+	$dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	return $dbConnection;
+}
+$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+mysqli_set_charset($con, "utf8mb4");
+// Check connection
+if (!$con) {
+	echo "Duh! Gagal menghubungi MySQL: " . mysqli_connect_error();
+}
 if (empty($_SESSION["memberid"])) {
 ?>
 	<!DOCTYPE html>
@@ -166,7 +186,6 @@ if (empty($_SESSION["memberid"])) {
 		<script src="<?= BASE_URL; ?>assets/loginpage/js/jquery.min.js"></script>
 		<script src="<?= BASE_URL; ?>assets/loginpage/js/bootstrap.bundle.min.js"></script>
 		<script src="<?= BASE_URL; ?>assets/loginpage/js/adminlte.min.js"></script>
-		<script src="<?= BASE_DASHBOARD; ?>assets/js/tongle.js"></script>
 	</body>
 
 	</html>
